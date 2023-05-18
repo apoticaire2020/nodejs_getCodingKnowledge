@@ -1,12 +1,21 @@
-const { readFileSync , writeFileSync} = require("fs");
-
-const mydata = JSON.parse(readFileSync('./mydata.json' , 'utf8'));
+/* const request  = require("postman-request")
 
 
-console.log(mydata.name);
+request ("https://dog.ceo/api/breeds/image/random" , ( err , res , body) => { 
+  
+    const {message , status} = JSON.parse(body) ;
+  
+}) 
+request ("https://api.thecatapi.com/v1/images/search" , ( err , res , body) => { 
+  
+    const catapidata = JSON.parse(body) ;
+ 
+    console.log( catapidata[0].url)
+}
+)  */
 
-//writeFileSync('./mydata.json', objtojson);
-mydata.name = 'ali zawa';
+fetch ("https://dog.ceo/api/breeds/image/random").then( res => res.json() )
+                                                .then ( data =>  console.log (data.message) )
 
-const objtojson = JSON.stringify(mydata);
-//writeFileSync('./mondata.json', objtojson);
+fetch ("https://api.thecatapi.com/v1/images/search").then( res => res.json() )
+                                                .then ( data =>  console.log (data[0].url) )
